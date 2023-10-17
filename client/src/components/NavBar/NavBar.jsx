@@ -22,14 +22,13 @@ const NavBar = ({ userId, userImage }) => {
 
 
   useEffect(() => {
-  
- 
+    const token = sessionStorage.getItem("jwt_session");
     if(token)
     {
       loginState(false)
     }
 
-  }, [location, token]);
+  }, [location]);
 
   const handleLogout = () => {
     sessionStorage.removeItem("jwt_session");

@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { validateAccountDetail } from "../../Validate";
 import { setUser } from '../../redux/Actions/Users/usersActions'
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import jwtDecode from "jwt-decode";
 
 const AccountDetail = () => {
   const dispatch = useDispatch()
@@ -34,6 +35,17 @@ const AccountDetail = () => {
       const handFieldClick = () => {
         setFieldEnabled(true);
       };
+
+      useEffect(()  => {
+        const token = sessionStorage.getItem("jwt_session");
+        if(!userDetail.name && token)
+        {
+          const id = jwtDecode(token).id
+          dispatch
+
+        }
+
+      }, [])
 
       const handleChange = (event) => {
         const { name, value } = event.target;

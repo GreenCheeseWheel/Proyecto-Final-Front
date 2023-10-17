@@ -14,7 +14,7 @@ import Users from './views/Users/Users';
 import Sales from './views/Sales/Sales';
 import Cart from './views/Cart/Cart';
 import axios from 'axios';
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,7 +29,7 @@ const App = () => {
   const dispatch = useDispatch();
   const token = sessionStorage.getItem("jwt_session");
   const userRole = useSelector(state => state.userRole);
-
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -79,7 +79,7 @@ const App = () => {
                 dispatch(createUserRole(rol));
                 
                 dispatch(setUser({id, email, name, rol, celular}));
-              
+                window.location = "/";
               })
               .catch(error => {
                 alert("ESTO ES UNA ALERTA DE ERROR: " + error);
